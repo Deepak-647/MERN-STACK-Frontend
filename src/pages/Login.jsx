@@ -1,10 +1,11 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 const Login = () => {
   const [user, setUser] = useState({
     email: "",
     password: "",
   });
-
+  const navigate = useNavigate();
   const handleInput = (e) => {
     let name = e.target.name;
     let value = e.target.value;
@@ -17,9 +18,29 @@ const Login = () => {
 
   //handling the form submission
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(user)
+    console.log(user);
+    try {
+      const response = await fetch(`http://localhost:5000/api/auth/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(user),
+      });
+      if (response.ok) {
+        alert("Login Successful!")
+        setUser({  email: "", password: "" });
+        navigate("/")
+        
+      }else{
+        alert("Invalid Credentials")
+      }
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <div className="h-[90vh]  flex items-center justify-center">
@@ -59,7 +80,7 @@ const Login = () => {
                   className="bg-slate-800"
                 />
               </div>
-              
+
               <br />
               <button type="submit">Log In</button>
             </form>
@@ -67,7 +88,7 @@ const Login = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;
