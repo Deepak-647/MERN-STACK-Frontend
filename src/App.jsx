@@ -6,6 +6,7 @@ import  Service  from "./pages/Service";
 import  Register  from "./pages/Register";
 import  Login  from "./pages/Login";
 import Navbar from "./component/Navbar";
+import ErrorPage from "./pages/ErrorPage";
 //subscribe thapatechnical channel for more awesome content. 
 
 const App = () => {
@@ -19,6 +20,7 @@ const App = () => {
         <Route path="/service" element={<Service />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route path="*" element={<ErrorPage />} />
       </Routes>
     </Router>
   );
