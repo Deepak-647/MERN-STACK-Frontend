@@ -1,28 +1,37 @@
- import { useState } from "react"
+import { useState } from "react";
+import { useAuth } from "../store/auth";
 
 const Contact = () => {
   const [contact, setContact] = useState({
     username: "",
     email: "",
     message: "",
-  
   });
-
+  const [userData, setUserData] = useState(true);
+  const { user } = useAuth();
+  if (userData && user) {
+    setContact({
+      username:user.msg.username,
+      email: user.msg.email,
+      message: "",
+    });
+    setUserData(false);
+  }
   const handleInput = (e) => {
     let name = e.target.name;
     let value = e.target.value;
 
     setContact((prev) => ({
       ...prev,
-      [name] : value,
-    }))
+      [name]: value,
+    }));
   };
 
   //handling the form submission
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(contact)
+    console.log(contact);
   };
   return (
     <div>
@@ -35,10 +44,10 @@ const Contact = () => {
       <div className="flex items-center justify-center">
         <div className="flex items-center gap-x-20">
           <div>
-            <img src="/images/support.png" alt="" width="400" height="500"/>
+            <img src="/images/support.png" alt="" width="400" height="500" />
           </div>
           <div>
-          <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit}>
               <div className="flex flex-col">
                 <label htmlFor="username">Username</label>
                 <input
@@ -86,7 +95,7 @@ const Contact = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Contact
+export default Contact;
