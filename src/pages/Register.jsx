@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../store/auth";
+import { toast } from "react-toastify";
 
 const Register = () => {
   const [user, setUser] = useState({
@@ -46,9 +47,14 @@ const {storeTokenInLS} = useAuth()
         // localStorage.setItem("token",res_data.token);
 
         setUser({ username: "", email: "", phone: "", password: "" });
+        toast.success("Registration Successful !",{
+          theme:"dark",
+        })
         navigate("/login")
       }else{
-        alert(res_data.message ? res_data.message : res_data.msg)
+        toast.error(res_data.message ? res_data.message : res_data.msg,{
+          theme:"dark",
+        })
       }
       
     } catch (error) {
