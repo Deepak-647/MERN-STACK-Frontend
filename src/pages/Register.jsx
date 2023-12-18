@@ -37,8 +37,9 @@ const {storeTokenInLS} = useAuth()
         },
         body: JSON.stringify(user),
       });
+      const res_data =await response.json();
+
       if (response.ok) {
-        const res_data =await response.json();
         //stored the token in localhost
           
         storeTokenInLS(res_data.token);
@@ -46,8 +47,10 @@ const {storeTokenInLS} = useAuth()
 
         setUser({ username: "", email: "", phone: "", password: "" });
         navigate("/login")
+      }else{
+        alert(res_data.message ? res_data.message : res_data.msg)
       }
-      console.log(response);
+      
     } catch (error) {
       console.log("register error", error);
     }
