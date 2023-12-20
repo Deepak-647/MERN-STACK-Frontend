@@ -59,15 +59,15 @@ const Contact = () => {
           <div className="h-[0.3rem] w-20 bg-violet-950 mt-2"></div>
         </div>
       </header>
-      <div className="flex items-center justify-center">
-        <div className="flex items-center gap-x-20">
-          <div>
-            <img src="/images/support.png" alt="" width="400" height="500" />
+      <div className="flex items-center justify-center ">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-x-20 w-[100%]">
+          <div className="flex items-center justify-center">
+            <img src="/images/support.png" alt="" className="sm:h-[450px]  h-[300px]"/>
           </div>
-          <div>
+          <div className="sm:w-[25%] w-[80%]">
             <form onSubmit={handleSubmit}>
-              <div className="flex flex-col">
-                <label htmlFor="username">Username</label>
+              <div className="flex flex-col m-4">
+                <label htmlFor="username" className="my-1 text-lg">Username</label>
                 <input
                   type="text"
                   name="username"
@@ -76,11 +76,11 @@ const Contact = () => {
                   value={contact.username}
                   onChange={handleInput}
                   required
-                  className="bg-slate-800"
+                  className="bg-slate-800 px-4 py-2"
                 />
               </div>
-              <div className="flex flex-col">
-                <label htmlFor="email">Email</label>
+              <div className="flex flex-col m-4">
+                <label htmlFor="email" className="my-1 text-lg">Email</label>
                 <input
                   type="email"
                   name="email"
@@ -89,25 +89,25 @@ const Contact = () => {
                   value={contact.email}
                   onChange={handleInput}
                   required
-                  className="bg-slate-800"
+                  className="bg-slate-800 px-4 py-2"
                 />
               </div>
-              <div className="flex flex-col">
-                <label htmlFor="message">Message</label>
+              <div className="flex flex-col m-4">
+                <label htmlFor="message" className="my-1 text-lg">Message</label>
                 <textarea
                   type="message"
                   name="message"
                   cols="30"
-                  rows="10"
+                  rows="5"
                   id="message"
                   value={contact.message}
                   onChange={handleInput}
                   required
-                  className="bg-slate-800"
+                  className="bg-slate-800 px-4 py-2"
                 />
               </div>
               <br />
-              <button type="submit">Submit</button>
+              <button type="submit" className="border border-white p-1 rounded-md m-2 px-4 hover:bg-white hover:text-black hover:cursor-pointer font-semibold">Submit</button>
             </form>
           </div>
         </div>

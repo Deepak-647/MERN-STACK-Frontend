@@ -8,6 +8,7 @@ import  Login  from "./pages/Login";
 import Navbar from "./component/Navbar";
 import ErrorPage from "./pages/ErrorPage";
 import Logout from "./pages/Logout";
+import Footer from "./component/Footer";
 
 //subscribe thapatechnical channel for more awesome content. 
 
@@ -25,6 +26,7 @@ const App = () => {
         <Route path="/logout" element={<Logout />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
+      <Footer/>
     </Router>
   );
 };

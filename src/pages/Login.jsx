@@ -10,7 +10,7 @@ const Login = () => {
   });
   const navigate = useNavigate();
 
-  const {storeTokenInLS} = useAuth();
+  const { storeTokenInLS } = useAuth();
   const handleInput = (e) => {
     let name = e.target.name;
     let value = e.target.value;
@@ -34,24 +34,23 @@ const Login = () => {
         },
         body: JSON.stringify(user),
       });
-      const res_data =await response.json();
-    
+      const res_data = await response.json();
+
       if (response.ok) {
-        toast.success("Login Successful!",{
-          theme:"dark",
-        })
+        toast.success("Login Successful!", {
+          theme: "dark",
+        });
 
         //storing token in local storage
-        storeTokenInLS(res_data.token)
+        storeTokenInLS(res_data.token);
 
         // localStorage.setItem("token",res_data.token);
-        setUser({  email: "", password: "" });
-        navigate("/")
-        
-      }else{
-        toast.error(res_data.message,{
+        setUser({ email: "", password: "" });
+        navigate("/");
+      } else {
+        toast.error(res_data.message, {
           theme: "colored",
-        })
+        });
       }
       console.log(response);
     } catch (error) {
@@ -59,19 +58,25 @@ const Login = () => {
     }
   };
   return (
-    <div className="h-[90vh]  flex items-center justify-center">
-      <div className="flex items-center justify-between">
-        <div className="h-full flex items-center justify-center">
-          <img src="/images/login.png" alt="" width="500" height="500" />
-        </div>
+    <>
+      <header className="m-8">
         <div>
-          <div>
-            <h1 className="mb-3">Log In</h1>
+          <h1 className="text-4xl font-semibold">Log In</h1>
+          <div className="h-[0.3rem] w-20 bg-violet-950 mt-2"></div>
+        </div>
+      </header>
+      <div className="flex items-center justify-center">
+        <div className="flex flex-col sm:flex-row items-center justify-between w-[60%]">
+          <div className="h-full flex items-center justify-center">
+            <img src="/images/login.png" alt="" className="sm:h-[450px]  h-[300px]"/>
           </div>
-          <div>
+
+          <div className="sm:w-[40%] w-[90%] my-2">
             <form onSubmit={handleSubmit}>
-              <div className="flex flex-col">
-                <label htmlFor="email">email</label>
+              <div className="flex flex-col my-4">
+                <label htmlFor="email" className="my-1 text-lg">
+                  Email
+                </label>
                 <input
                   type="email"
                   name="email"
@@ -80,11 +85,13 @@ const Login = () => {
                   value={user.email}
                   onChange={handleInput}
                   required
-                  className="bg-slate-800"
+                  className="bg-slate-800 px-4 py-2"
                 />
               </div>
-              <div className="flex flex-col">
-                <label htmlFor="password">password</label>
+              <div className="flex flex-col my-4">
+                <label htmlFor="password" className="my-1 text-lg">
+                  Password
+                </label>
                 <input
                   type="password"
                   name="password"
@@ -93,17 +100,17 @@ const Login = () => {
                   value={user.password}
                   onChange={handleInput}
                   required
-                  className="bg-slate-800"
+                  className="bg-slate-800 px-4 py-2"
                 />
               </div>
 
               <br />
-              <button type="submit">Log In</button>
+              <button type="submit" className="border border-white p-1 rounded-md m-2 px-4 hover:bg-white hover:text-black hover:cursor-pointer font-semibold">Log In</button>
             </form>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
